@@ -34,8 +34,14 @@ def create_menu():
 
 def add_book():
     new_book = ui.get_book_info()
-    new_book.save()
-
+    try:
+        if store.exact_match(new_book):
+            print('Looks like you already have this book in your book list. Try again')
+        else:
+            new_book.save()
+            print('Added new book!')
+    except ValueError as err:
+        print(f'Something went wrong adding book to the database{err}')
 
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
