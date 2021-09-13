@@ -70,9 +70,13 @@ def change_read():
 
     book_id = ui.get_book_id()
     book = store.get_book_by_id(book_id)
-    new_read = ui.get_read_value()
-    book.read = new_read
-    book.save()
+    # If book id is found on DB, continue to ask user if book was read already and save new status if any
+    if book != None:
+        new_read = ui.get_read_value()
+        book.read = new_read
+        book.save()
+    else:
+        print("\nBook not found. Try again!\n")
 
 
 def quit_program():
