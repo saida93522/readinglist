@@ -34,14 +34,15 @@ def create_menu():
 
 def add_book():
     new_book = ui.get_book_info()
-    try:
+    while new_book:  # if book author and a title exists
+        # found None/BookError is returned, print message to user.
         if store.exact_match(new_book):
-            print('Looks like you already have this book in your book list. Try again')
+            print('\n** You already have this book in your reading list.**\n')
         else:
             new_book.save()
-            print('Added new book!')
-    except ValueError as err:
-        print(f'Something went wrong adding book to the database{err}')
+            print(
+                f'{new_book.title} by {new_book.author} has been added to your reading list.')
+        break
 
 
 def show_read_books():
