@@ -27,6 +27,7 @@ def create_menu():
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
+    menu.add_option('7', 'Delete Book', delete_book)
     menu.add_option('Q', 'Quit', quit_program)
 
     return menu
@@ -78,6 +79,19 @@ def change_read():
         book.save()
     else:
         print("\nBook not found. Try again!\n")
+
+
+def delete_book():
+    book_id = ui.get_book_id()
+    book = store.get_book_by_id(book_id)  # look for user id in db
+    if book != None:  # if book exist in the database
+        book.delete()  # delete it
+        print()
+        # display to user book was deleted
+        print(
+            f'❌ {book.title.capitalize()} by {book.author.capitalize()} was deleted from reading list.\n')
+    else:
+        print('Error: Book Not Found\n')
 
 
 def quit_program():
