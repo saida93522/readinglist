@@ -82,16 +82,16 @@ def change_read():
 
 
 def delete_book():
-    try:
-        book_id = ui.get_book_id()
-        book = store.get_book_by_id(book_id)  # look for user id in db
-        if book != None:  # if book exist in the database
-            book.delete()  # delete it
-            print()
-            print(
-                f'❌ {book.title.capitalize()} by {book.author.capitalize()} was deleted from reading list.\n')  # display to user book was deleted
-    except Exception:
-        print('Error: Book Not Found')
+    book_id = ui.get_book_id()
+    book = store.get_book_by_id(book_id)  # look for user id in db
+    if book != None:  # if book exist in the database
+        book.delete()  # delete it
+        print()
+        # display to user book was deleted
+        print(
+            f'❌ {book.title.capitalize()} by {book.author.capitalize()} was deleted from reading list.\n')
+    else:
+        print('Error: Book Not Found\n')
 
 
 def quit_program():
