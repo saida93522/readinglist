@@ -15,7 +15,7 @@ def main():
         choice = ui.display_menu_get_choice(menu)
         action = menu.get_action(choice)
         action()
-        if choice == 'q':
+        if choice == 'Q':
             break
 
 
@@ -27,7 +27,7 @@ def create_menu():
     menu.add_option('4', 'Show Read Books', show_read_books)
     menu.add_option('5', 'Show All Books', show_all_books)
     menu.add_option('6', 'Change Book Read Status', change_read)
-    menu.add_option('q', 'Quit', quit_program)
+    menu.add_option('Q', 'Quit', quit_program)
 
     return menu
 
@@ -42,6 +42,7 @@ def add_book():
             print('Added new book!')
     except ValueError as err:
         print(f'Something went wrong adding book to the database{err}')
+
 
 def show_read_books():
     read_books = store.get_books_by_read_value(True)
