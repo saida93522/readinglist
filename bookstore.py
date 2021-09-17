@@ -179,9 +179,12 @@ class BookStore:
             rows = con.execute(get_book_by_id_sql, (id,))
             book_data = rows.fetchone()  # Get first result
 
+            # If no book is found with received ID then return None, otherwise return the book data
             if book_data:
                 book = Book(book_data['title'], book_data['author'],
                             book_data['read'], book_data['rowid'])
+            else:
+                return None
 
             con.close()
 
