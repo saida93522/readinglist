@@ -76,6 +76,12 @@ def change_read():
     if book != None:
         new_read = ui.get_read_value()
         book.read = new_read
+        if new_read == True:
+            print(
+                f'\nYou have read {book.title.title()} by {book.author.title()}\n')
+        else:
+            print(
+                f'\nYou have not read {book.title.title()} by {book.author.title()}\n')
         book.save()
     else:
         print("\nBook not found. Try again!\n")
