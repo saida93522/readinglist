@@ -18,6 +18,14 @@ class Book:
 
         self.bookstore = BookStore()
 
+    """ Save function do one of two possible actions: saves a new book into DB or update a book if already exists and any of its info was modified.
+    When user try to add a new book, first the book title and author name is provided, then Save function is called. 
+    At this moment no id exists yet, then one will be created and book will be saved by calling add_book method.
+
+    Instead, if Save function detects that book title and author name already exists and find book id, then the update_book method will be called
+    to update book info that has been modified (only read status for now).
+    """
+
     def save(self):
         if self.id:
             self.bookstore._update_book(self)
